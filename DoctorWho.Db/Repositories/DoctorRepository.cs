@@ -1,4 +1,5 @@
 ﻿using DoctorWho.Domain;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,12 @@ namespace DoctorWho.Db.Repositories
 {
     public class DoctorsRepository
     {
+        private readonly DoctorWhoCoreDbContext _context;
+
+        public DoctorsRepository(DoctorWhoCoreDbContext context)
+        {
+            _context = context;
+        }
         public static void Create(DoctorIdEnum DoctorId, int DoctorNumber, string DoctorName, DateTime? BirthDate, DateTime? FirstEpisodeDate, DateTime? LastEpisodeDate)
         {
             if (DoctorName == null) throw new ArgumentNullException("Cannot create a Doctor with a null DoctorName!");
@@ -31,9 +38,27 @@ namespace DoctorWho.Db.Repositories
                 throw new Exception(ex.Message);
             }
         }
-        public static List<Doctor> GetAllDoctors()
+        public List<Doctor> GetAllDoctors()
         {
             return DoctorWhoCoreDbContext._context.Doctors.ToList();
         }
+
+        public Doctor Upsert(Doctor doctor)
+        {
+            var existingDoctor = _context.Doctors.Find(doctor.DoctorId);
+            if (existingDoctor != null)
+            {
+                // Update existing doctor
+                _context.Entry(existingDoctor).CurrentValues.SetValues(doctor);
+            }
+            else
+            {
+                // Create new doctor
+                _context.Doctors.Add(doctor);
+            }
+            _context.SaveChanges();
+            return doctor;
+        }
+
     }
 }
