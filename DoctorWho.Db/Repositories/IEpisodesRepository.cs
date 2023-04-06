@@ -12,5 +12,8 @@ namespace DoctorWho.Db.Repositories
         void Delete(Episode Episode);
         Episode GetById(int id);
         IEnumerable<Episode> GetAll();
+        void AddEnemyToEpisode(int episodeId, int enemyId);
+        void AddCompanionToEpisode(int episodeId, int companionId);
+
     }
 }

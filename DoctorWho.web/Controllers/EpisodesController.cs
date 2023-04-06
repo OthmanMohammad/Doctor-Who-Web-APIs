@@ -76,5 +76,19 @@ namespace DoctorWho.web.Controllers
             var episodes = _episodesRepository.GetAll();
             return Ok(episodes);
         }
+        [HttpPost("{episodeId:int}/enemies/{enemyId:int}")]
+        public IActionResult AddEnemyToEpisode(int episodeId, int enemyId)
+        {
+            _episodesRepository.AddEnemyToEpisode(episodeId, enemyId);
+            return Ok("Enemy added to episode successfully");
+        }
+
+        [HttpPost("{episodeId:int}/companions/{companionId:int}")]
+        public IActionResult AddCompanionToEpisode(int episodeId, int companionId)
+        {
+            _episodesRepository.AddCompanionToEpisode(episodeId, companionId);
+            return Ok("Companion added to episode successfully");
+        }
+
     }
 }

@@ -55,5 +55,19 @@ namespace DoctorWho.Db.Repositories
         {
             return _context.Episodes.ToList();
         }
+        public void AddEnemyToEpisode(int episodeId, int enemyId)
+        {
+            var episodeEnemy = new EpisodeEnemy { EpisodeId = episodeId, EnemyId = enemyId };
+            _context.EpisodeEnemies.Add(episodeEnemy);
+            _context.SaveChanges();
+        }
+
+        public void AddCompanionToEpisode(int episodeId, int companionId)
+        {
+            var episodeCompanion = new EpisodeCompanion { EpisodeId = episodeId, CompanionId = companionId };
+            _context.EpisodeCompanions.Add(episodeCompanion);
+            _context.SaveChanges();
+        }
+
     }
 }
