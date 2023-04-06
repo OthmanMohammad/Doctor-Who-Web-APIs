@@ -16,6 +16,8 @@ builder.Services.AddScoped<IEpisodesRepository, EpisodesRepository>();
 // Register the DbContext and the repository with the dependency injection container
 builder.Services.AddDbContext<DoctorWhoCoreDbContext>();
 builder.Services.AddScoped<DoctorsRepository>();
+builder.Services.AddScoped<CompanionsRepository>();
+builder.Services.AddScoped<EnemiesRepository>();
 
 
 // Add controllers and FluentValidation

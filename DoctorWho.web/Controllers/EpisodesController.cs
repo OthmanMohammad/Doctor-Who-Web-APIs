@@ -1,4 +1,5 @@
-﻿using DoctorWho.Db.Repositories;
+﻿using AutoMapper;
+using DoctorWho.Db.Repositories;
 using DoctorWho.Domain;
 using DoctorWho.web.DTOs;
 using Microsoft.AspNetCore.Mvc;
@@ -13,15 +14,20 @@ namespace DoctorWho.web.Controllers
     {
         private readonly IEpisodesRepository _episodesRepository;
 
-        public EpisodesController(IEpisodesRepository episodesRepository)
+        private readonly IMapper _mapper;
+
+        public EpisodesController(IEpisodesRepository episodesRepository, IMapper mapper)
         {
             _episodesRepository = episodesRepository;
+            _mapper = mapper;
         }
+
 
         [HttpPost]
         public IActionResult CreateEpisode([FromBody] EpisodeDto episodeDto)
         {
-            _episodesRepository.Create(episodeDto.SeriesNumber, episodeDto.EpisodeNumber, episodeDto.Title, episodeDto.EpisodeDate, episodeDto.AuthorId, episodeDto.DoctorId, episodeDto.Notes);
+            var episode = _mapper.Map<Episode>(episodeDto);
+            _episodesRepository.Create(episode.SeriesNumber, episode.EpisodeNumber, episode.Title, episode.EpisodeDate, episode.AuthorId, episode.DoctorId, episode.Notes);
             return Ok("Episode created successfully");
         }
 

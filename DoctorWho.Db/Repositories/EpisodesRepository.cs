@@ -15,7 +15,7 @@ namespace DoctorWho.Db.Repositories
             _context = context;
         }
 
-        public void Create(int? SeriesNumber, int? EpisodeNumber, string Title, DateTime? EpisodeDate, int AuthorId, DoctorIdEnum DoctorId, string Notes)
+        public void Create(int? SeriesNumber, int? EpisodeNumber, string Title, DateTime? EpisodeDate, int? AuthorId, DoctorIdEnum DoctorId, string Notes)
         {
             if (Title == null) throw new ArgumentNullException("Cannot create an Episode with a null Title!");
             _context.Episodes.Add(new Episode(SeriesNumber, EpisodeNumber, null, Title, EpisodeDate, AuthorId, DoctorId, Notes));
