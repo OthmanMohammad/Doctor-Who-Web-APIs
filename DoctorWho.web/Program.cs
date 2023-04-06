@@ -4,8 +4,13 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using DoctorWho.Db.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IEpisodesRepository, EpisodesRepository>();
+
 
 // Add controllers and FluentValidation
 builder.Services.AddControllers()

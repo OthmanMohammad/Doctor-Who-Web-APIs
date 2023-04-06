@@ -7,8 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DoctorWho.Core\DoctorWho.Db\DoctorWho.Db.csproj" />
+    <ProjectReference Include="..\..\DoctorWho.Core\DoctorWho.Domain\DoctorWho.Domain.csproj" />
   </ItemGroup>
 
 </Project>
