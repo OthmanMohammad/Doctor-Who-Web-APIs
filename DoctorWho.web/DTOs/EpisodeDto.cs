@@ -6,7 +6,7 @@ public class EpisodeDto
     public int? EpisodeNumber { get; set; }
     public string Title { get; set; }
     public DateTime EpisodeDate { get; set; }
-    public int AuthorId { get; set; }
+    public int? AuthorId { get; set; }
     public DoctorIdEnum DoctorId { get; set; }
     public string Notes { get; set; }
 }
