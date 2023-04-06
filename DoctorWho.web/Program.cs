@@ -5,11 +5,17 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DoctorWho.Db.Repositories;
+using DoctorWho.Db;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IEpisodesRepository, EpisodesRepository>();
+
+// Register the DbContext and the repository with the dependency injection container
+builder.Services.AddDbContext<DoctorWhoCoreDbContext>();
+builder.Services.AddScoped<DoctorsRepository>();
 
 
 // Add controllers and FluentValidation
