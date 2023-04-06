@@ -109,7 +109,7 @@ dotnet run
 
 ## Author
 
-This project was developed by [Mohammad Othman](https://github.com/OthmanMohammad)
+This project was developed by [Mohammad Othman](https://github.com/OthmanMohammad).
 
 ## License
 
